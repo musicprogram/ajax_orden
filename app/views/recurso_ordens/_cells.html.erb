@@ -1,0 +1,4 @@
+<td><%= r.talla %></td>
+<td><%= r.cantidad %></td>
+<td><%= link_to 'editar',  edit_orden_recurso_orden_path(@orden , r), remote:true %></td>
+<td><%= link_to 'Eliminar', orden_recurso_orden_path(@orden, r), method: :delete, data: { confirm: 'Are you sure?' }, remote:true %></td>

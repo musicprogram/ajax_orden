@@ -17,3 +17,18 @@
 
 <%= link_to 'Edit', edit_orden_path(@orden) %> |
 <%= link_to 'Back', ordens_path %>
+
+
+
+<table>
+	<thead>
+		<th></th>
+		<th></th>
+	</thead>
+	<tbody id="recursos-ordenes">
+		<% @orden.recurso_ordens.each do |r| %>
+
+			<%= render '/recurso_ordens/rows', r: r%>
+		<% end %>
+	</tbody>
+</table>
