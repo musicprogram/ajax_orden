@@ -1,5 +1,2 @@
-<h1>New Recurso Orden</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', orden_recurso_ordens_path(@orden) %>
+$('#form-recurso').html('<%= j render "/recurso_ordens/form" %>');
+$('#form-recurso').slideDown(350);
