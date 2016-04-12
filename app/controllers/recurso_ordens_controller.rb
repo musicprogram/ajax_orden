@@ -1,20 +1,12 @@
 class RecursoOrdensController < ApplicationController
-  before_action :set_recurso_orden, only: [:show, :edit, :update, :destroy, :index, :new, :create]
+  before_action :set_recurso_orden, only: [:edit, :update, :destroy]
+  before_action :set_orden
 
-  # GET /recurso_ordens
-  # GET /recurso_ordens.json
-  def index
-    @recurso_ordens = @orden.recurso_ordens.all
-  end
-
-  # GET /recurso_ordens/1
-  # GET /recurso_ordens/1.json
-  def show
-  end
 
   # GET /recurso_ordens/new
   def new
     @recurso_orden = RecursoOrden.new
+    respond_to {|format| format.js}
   end
 
   # GET /recurso_ordens/1/edit
@@ -28,11 +20,9 @@ class RecursoOrdensController < ApplicationController
     @recurso_orden.orden_id = @orden.id
     respond_to do |format|
       if @recurso_orden.save
-        format.html { redirect_to orden_recurso_ordens_path(@orden), notice: 'Recurso orden was successfully created.' }
-        format.json { render :show, status: :created, location: @recurso_orden }
+        format.js
       else
-        format.html { render :new }
-        format.json { render json: @recurso_orden.errors, status: :unprocessable_entity }
+        format.js{ render :new}
       end
     end
   end
@@ -42,11 +32,9 @@ class RecursoOrdensController < ApplicationController
   def update
     respond_to do |format|
       if @recurso_orden.update(recurso_orden_params)
-        format.html { redirect_to orden_recurso_ordens_path(@orden), notice: 'Recurso orden was successfully updated.' }
-        format.json { render :show, status: :ok, location: @recurso_orden }
+        format.js
       else
-        format.html { render :edit }
-        format.json { render json: @recurso_orden.errors, status: :unprocessable_entity }
+        format.js{ render :new}
       end
     end
   end
@@ -56,18 +44,19 @@ class RecursoOrdensController < ApplicationController
   def destroy
     @recurso_orden.destroy
     respond_to do |format|
-      format.html { redirect_to orden_recurso_ordens_url(@orden), notice: 'Recurso orden was successfully destroyed.' }
-      format.json { head :no_content }
+     format.js
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_recurso_orden
-      @orden = Orden.find(params[:orden_id])
       @recurso_orden = RecursoOrden.find(params[:id]) if params[:id]
     end
 
+    def set_orden
+      @orden = Orden.find(params[:orden_id])      
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def recurso_orden_params
       params.require(:recurso_orden).permit(:talla, :cantidad, :orden_id)
