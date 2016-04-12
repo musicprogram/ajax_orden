@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  talla: MyString
+  cantidad: 1.5
+  orden_id: 
+
+two:
+  talla: MyString
+  cantidad: 1.5
+  orden_id: 

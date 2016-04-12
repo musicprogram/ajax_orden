@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Recurso Ordens</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Talla</th>
+      <th>Cantidad</th>
+      <th>Orden</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recurso_ordens.each do |recurso_orden| %>
+      <tr>
+        <td><%= recurso_orden.talla %></td>
+        <td><%= recurso_orden.cantidad %></td>
+        <td><%= recurso_orden.orden.try(:id) %></td>
+       
+        <td><%= link_to 'Edit', edit_orden_recurso_orden_path(@orden, recurso_orden) %></td>
+        <td><%= link_to 'Destroy', orden_recurso_orden_path(@orden, recurso_orden), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Recurso orden', new_orden_recurso_orden_path(@orden) %>
+
+
+<%= link_to 'Back', ordens_path(@orden) %>
